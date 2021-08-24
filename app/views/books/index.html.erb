@@ -1,0 +1,49 @@
+  <div id="error_explanation">   
+    <% if @book.errors.any? %>
+       <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+       <% @book.errors.full_messages.each do |message| %>
+         <ul>
+           <li><%= message %></li>
+         </ul>
+       <% end %>
+    <% end %>
+  </div> 
+
+<div class="container"> 
+ <div class="row">
+
+   <%= render 'books/list' %>
+   
+   
+  <div class="col-md-8 offset-md-1"> 
+
+<h2>Books</h2>
+
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+  
+  <% @books.each do |book| %>
+  <tbody>
+    <tr>
+            <td><%= link_to attachment_image_tag(book.user, :profile_image, size: '40x40' , format: 'jpeg', fallback: "no_image.jpg"), user_path(book.user) %></td>
+            <td>
+              <%= link_to book.title, book_path(book) %>
+            </td>
+            <td>
+                <%= book.body %>
+            </td>
+    </tr>
+  </tbody>
+<% end %>
+  </table>
+  </div>
+
+  
+  </div>
+  </div>
